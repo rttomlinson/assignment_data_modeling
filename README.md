@@ -120,38 +120,44 @@ orders and products: many to many (join table with order_id and products_id)
 <!-- (Optional) You want to collect analytics data for visitors and logged-in-users who are visiting your website. This includes basic information like page views and more advanced things like link clicks and time on page. You ideally want to tie this information back to a given user if possible. Design the data model for this analytics infrastructure. You'll have to use your judgement about what additional attributes would be interesting to track -->
 
 Users
+id: INT
+username: VARCHAR
 
-id:
-username:
-
-Session
-
-id:
-user_id: (foreign key)
-
+UserSession
+id: INT
+user_id: INT (foreign key)
+start_time: DATE
+stop_time: DATE
 
 Webpage
-
-id:
-
+id: INT
 
 Links
-
-id:
-webpage_id:
-
-Views
-
-id:
-webpage_id:
-user_id:
-duration:
-exit_link:
-
+id: INT
+webpage_id: INT
 
 WebpageSessions
-webpage_id:
-session_id:
-time_on_page:
+id: INT
+webpage_id: INT
+usersession_id:INT
+duration:INT
+exit_link: VARCHAR
 
-User can have many sessions, sessions have one user
+WebpageClickEvent
+id: INT
+WebpageSession_id: INT
+
+
+LinksClickEvent
+id:INT
+link_id:INT
+WebpageSession_id:INT
+
+User can have many usersessions, usersessions have one user
+user-sessions can have many webpage-session, webpage-sessions can have one usersessions
+Webpage can have many webpage-sessions, webpage-session can only have one webpage
+
+
+
+
+
